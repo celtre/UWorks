@@ -1,17 +1,19 @@
 Planteamiento 
-Mediante este sistema de información se quiere crear un repositorio del contenido del curso de ingeniería de sistema, permitiéndoles a los estudiantes compartir contendidos propios. Que se encuentren contemplados en su malla curricular.
-Para poder acceder a estos contenidos el estudiante debe ingresar con su usuario y contraseña. Este posera un espacio donde aparecerá la información personal, contenido subido por él, contenido que sigue, área de notificaciones, amigos y el espacio para buscar y agregar contenido.
+Mediante este sistema de información se quiere crear un repositorio del contenido del curso de ingeniería de sistema, 
+permitiéndoles a los estudiantes compartir contendidos propios. Que se encuentren contemplados en su malla curricular.
+Para poder acceder a estos contenidos el estudiante debe ingresar con su usuario y contraseña. Este poseera un espacio
+donde aparecerá la información personal, contenido subido por él, contenido que sigue, área de notificaciones, amigos
+y el espacio para buscar y agregar contenido.
 
 Requerimientos 
 1.	El usuario debe loguearse para poder acceder a cualquier opción del sistema de información.
 2.	El sistema almacenara contenidos en múltiples formatos.
-3.	El sistema permitirá que el usuario duba contenido al sistema
+3.	El sistema permitirá que el usuario suba contenido al sistema
 4.	El sistema permitirá que el usuario busque contenido, mediante los parámetros que el sistema ofrece.
-5.	El usuario podrá subir contenidos.
-6.	El usuario podrá descargar los contenidos que sean de su agrado. 
-7.	El usuario podrá seguir contenido.
-8.	El usuario podrá tener amigos
-9.	El usuario podrá compartir contenidos con sus amigos
+5.	El usuario podrá descargar los contenidos que sean de su agrado. 
+6.	El usuario podrá seguir contenido.
+7.	El usuario podrá tener amigos
+8.	El usuario podrá compartir contenidos con sus amigos
 
 Historias de usuario
 
@@ -37,7 +39,8 @@ Grupo de amigos
 Como usuario logueado deseo poder tener un grupo de amigos para poder acceder a sus datos de manera directa
 
 Compartir contenido con amigos
-Como usuario Logueado deseo compartir contenido con migrupo de amigos para que ellos puedan acceder a este de manera directa 
+Como usuario Logueado deseo compartir contenido con migrupo de amigos para que ellos puedan acceder a este 
+de manera directa 
 
 Documentacion
 
