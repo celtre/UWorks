@@ -1,1 +1,32 @@
 Subir aqui los modelos de bases de datos
+Usuario 
+-	Id (primary key) auto incrementable
+-	Username unique texto
+-	Password texto 
+Materia
+-	Id (primary key) auto incrementable
+-	Materia texto
+MateriaProfesor 
+-	Id (primary key) auto incrementable
+-	idMateria numérico
+-	idProfesor numérico
+Profesor
+-	Id (primary key) auto incrementable
+-	Nombre texto
+Tags
+-	Id (primary key) auto incrementable
+-	Etiqueta texto 
+TagPost
+-	Id (primary key) auto incrementable
+-	idTag numérico 
+-	idPost numérico
+Post 
+-	Id (primary key) auto incrementable
+-	idUsuario numérico 
+-	idMateria numérico 
+-	IdProfesor  numérico 
+-	idTagPost numérico 
+-	Texto texto
+-	Adjunto binario 
+
+
