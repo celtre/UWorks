@@ -17,3 +17,12 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
+return array(
+    'login_title' => 'Login',
+    'login_button' => 'Login',
+    'register_title' => 'Register',
+    'register_button'  => 'Register',
+    'remember'    => 'Remember me',
+    'forgot_link' => 'Fortgot your password?'
+
+);
