@@ -7,7 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">@lang('auth.login_title')</div>
 				<div class="panel-body">
-					@include('partials/errors')
+				  @include('partials/errors')
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
