@@ -42,7 +42,10 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-Route::get('formulario', 'StorageController@index');
+Route::get('formulario', [
+  'uses' => 'StorageController@index',
+  'as'  =>  'file'
+  ]);
 Route::post('storage/create', 'StorageController@save');
 Route::get('storage/{archivo}', function ($archivo) {
     $public_path = public_path();
@@ -56,4 +59,3 @@ Route::get('storage/{archivo}', function ($archivo) {
     abort(404);
 
 });
-

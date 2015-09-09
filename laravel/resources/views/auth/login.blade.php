@@ -9,14 +9,14 @@
 				<div class="panel-body">
 					@include('partials/errors')
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ route(login) }}">
+					<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">@lang('validation.attributes.email')</label>
 							<div class="col-md-6">
 								<input name="email" type="email" value="{{ old('email') }}" class="form-control">
-							    
+
 							</div>
 						</div>
 
