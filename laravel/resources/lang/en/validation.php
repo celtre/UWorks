@@ -108,9 +108,9 @@ return [
         'name' => 'Name',
       'email' => 'E-Mail',
       'password' => 'Password',
-        'password_confirmation' => 'Confirm your password'
-
-
+        'password_confirmation' => 'Confirm your password',
+        'auth.errors_title' => 'Huge Error',
+    
     ],
 
 ];

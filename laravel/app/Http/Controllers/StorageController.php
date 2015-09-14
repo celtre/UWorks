@@ -16,7 +16,7 @@ class StorageController extends Controller
      */
     public function index()
     {
-        return \View::make('file');
+        return \View::make('file/file');
     }
 
     /**

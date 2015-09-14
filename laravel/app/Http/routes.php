@@ -46,10 +46,10 @@ Route::get('formulario', [
   'uses' => 'StorageController@index',
   'as'  =>  'file'
   ]);
-Route::post('storage/create', 'StorageController@save');
-Route::get('storage/{archivo}', function ($archivo) {
-    $public_path = public_path();
-    $url = $public_path.'/storage/'.$archivo;
+Route::post('formulario', 'StorageController@save');
+Route::get('formulario/{archivo}', function ($archivo) {
+    $public_path = storage_path();
+    $url = $public_path.'/app/'.$archivo;
     //verificamos si el archivo existe y lo retornamos
     if (Storage::exists($archivo))
     {

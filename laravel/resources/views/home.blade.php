@@ -8,7 +8,7 @@
                     <div class="panel-heading">Home</div>
                     <div class="panel-body">
 
-                        <p>WELCOME TO MY FIRTS APLICATION IN LARAVEL</p>
+                        <p>Bienvenido a Proyecto P</p>
                                 </div>
 
                     </div>

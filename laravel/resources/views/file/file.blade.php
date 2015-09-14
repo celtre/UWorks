@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layout')
 
 @section('content')
 
@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Agregar archivos</div>
                     <div class="panel-body">
-                        <form method="POST" action="http://diamond-chaos.codio.io:3000/tuto/public/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('file') }}" accept-charset="UTF-8" enctype="multipart/form-data">
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
