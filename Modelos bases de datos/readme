@@ -1,18 +1,18 @@
 Subir aqui los modelos de bases de datos
 Usuario 
 -	Id (primary key) auto incrementable
--	Username unique texto
--	Password texto 
+-	Name unique varchar
+-	Password varchar
+- Email varchar
+- Remember token varchar
+- Created at timestamp
+- Updated at timestamp
+
 Materia
 -	Id (primary key) auto incrementable
 -	Materia texto
-MateriaProfesor 
--	Id (primary key) auto incrementable
--	idMateria numérico
--	idProfesor numérico
-Profesor
--	Id (primary key) auto incrementable
--	Nombre texto
+- NumeroArchivos numerico
+- numeroDescargas numerico
 Tags
 -	Id (primary key) auto incrementable
 -	Etiqueta texto 
@@ -24,7 +24,6 @@ Post
 -	Id (primary key) auto incrementable
 -	idUsuario numérico 
 -	idMateria numérico 
--	IdProfesor  numérico 
 -	idTagPost numérico 
 -	Texto texto
 -	Adjunto binario 
