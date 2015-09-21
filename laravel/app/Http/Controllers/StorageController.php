@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
 class StorageController extends Controller
 {
     /**
@@ -82,7 +83,16 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $public_path = storage_path();
+      $url = $public_path.'/app/'.$archivo;
+      //verificamos si el archivo existe y lo retornamos
+      if (Storage::exists($archivo))
+      {
+          Storage::delete($archivo);
+          return route('home');
+      }
+      //si no se encuentra lanzamos un error 404.
+      abort(404);
     }
 
 
@@ -96,14 +106,14 @@ class StorageController extends Controller
 
         //obtenemos el campo file definido en el formulario
         $file = $request->file('file');
-
+        $tiempo = getlocaltime();
         //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
+        $nombre = $tiempo.$file->getClientOriginalName();
 
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
 
-        return "archivo guardado";
+        return route('home');
     }
 
 

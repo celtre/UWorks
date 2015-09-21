@@ -59,3 +59,10 @@ Route::get('formulario/{archivo}', function ($archivo) {
     abort(404);
 
 });
+
+
+Route::post('eliminar', 'StorageController@destroy');
+Route::get('eliminar/{archivo}',[
+  'uses' => 'StorageController@destroy',
+  'as'  =>  'eliminar'
+  ]);
