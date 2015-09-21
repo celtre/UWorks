@@ -2,8 +2,8 @@ Subir aqui los modelos de bases de datos
 Usuario 
 -	Id (primary key) auto incrementable
 -	Name varchar
--	Password unique varchar
-- Email varchar
+-	Password  varchar
+- Email unique varchar
 - Remember token varchar
 - Created at timestamp
 - Updated at timestamp
