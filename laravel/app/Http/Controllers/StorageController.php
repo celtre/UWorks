@@ -83,7 +83,7 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-      $public_path = storage_path();
+      /*$public_path = storage_path();
       $url = $public_path.'/app/'.$archivo;
       //verificamos si el archivo existe y lo retornamos
       if (Storage::exists($archivo))
@@ -92,7 +92,7 @@ class StorageController extends Controller
           return route('home');
       }
       //si no se encuentra lanzamos un error 404.
-      abort(404);
+      abort(404);*/
     }
 
 
@@ -106,14 +106,15 @@ class StorageController extends Controller
 
         //obtenemos el campo file definido en el formulario
         $file = $request->file('file');
-        $tiempo = getlocaltime();
+        $tiempo = localtime();
         //obtenemos el nombre del archivo
-        $nombre = $tiempo.$file->getClientOriginalName();
+        $tConvertido = implode(" ", $tiempo);
+        $nombre = $tConvertido.$file->getClientOriginalName();
 
         //indicamos que queremos guardar un nuevo archivo en el disco local
         \Storage::disk('local')->put($nombre,  \File::get($file));
 
-        return route('home');
+        return view('home');
     }
 
 

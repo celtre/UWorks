@@ -61,8 +61,17 @@ Route::get('formulario/{archivo}', function ($archivo) {
 });
 
 
-Route::post('eliminar', 'StorageController@destroy');
-Route::get('eliminar/{archivo}',[
-  'uses' => 'StorageController@destroy',
-  'as'  =>  'eliminar'
-  ]);
+Route::post('eliminar', 'StorageController@save');
+Route::get('eliminar/{archivo}', function ($archivo) {
+    $public_path = storage_path();
+    $url = $public_path.'/app/'.$archivo;
+    //verificamos si el archivo existe y lo retornamos
+    if (Storage::exists($archivo))
+    {
+      Storage::delete($archivo);
+      return view('home');
+    }
+    //si no se encuentra lanzamos un error 404.
+    abort(404);
+
+});
