@@ -4,6 +4,6 @@ Diseño de Ambientes Web 3, Ingeniería de Sistemas, Universidad Tecnológica de
 
 Plantilla usada:
 
-Nice Admin Bootstrap Template creada y mantenida por Bootstraptaste.
+Creative - Bootstrap 3 Responsive Admin Template creada y mantenida por GeeksLabs.
 
 Based on the Bootstrap framework created by Mark Otto and Jacob Thorton.
