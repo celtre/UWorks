@@ -22,7 +22,7 @@
         </div>
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me
-            <span class="pull-right"> <a href="fpassword.html"> Forgot Password?</a></span>
+            <span class="pull-right"> <a href="password"> Forgot Password?</a></span>
         </label>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
         <a class="btn btn-primary btn-lg btn-block" href="register" role="button">Register</a>

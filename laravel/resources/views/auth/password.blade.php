@@ -1,34 +1,29 @@
 @extends('layout')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Reset Password</div>
-				<div class="panel-body">
-					@include('partials/errors')
-					<form class="form-horizontal" role="form" method="POST" action="/password/email">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+<body class="login-img3-body">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+	<div class="container">
+		<form class="login-form" role ="form" method="POST" action="password">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Send Password Reset Link
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
+			<div class="login-wrap">
+					<p class="login-img"><i class="icon_lock_alt"></i></p>
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="icon_profile"></i></span>
+						<input type="email" class="form-control" placeholder="email" name="email" value="{{ old('email') }}"  autofocus>
+					</div>
+
+					<button class="btn btn-primary btn-lg btn-block" type="submit">send</button>
+
+
 			</div>
-		</div>
+			@include('partials/errors')
+		</form>
+
 	</div>
-</div>
+
+
+</body>
 @endsection
