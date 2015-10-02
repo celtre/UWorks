@@ -8,7 +8,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Basic Table | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>Upload | Creative - Bootstrap 3 Responsive Admin Template</title>
 
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@
                         </form>
                     </li>                    
                 </ul>
-                <!--  search form end -->                  
+                <!--  search form end -->           
             </div>
 
             <div class="top-nav notification-row">                
@@ -172,10 +172,7 @@
       </header>      
       <!--header end-->
 
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-           <!--sidebar start-->
+     <!--sidebar start-->
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
@@ -233,74 +230,132 @@
       <!--sidebar end-->
           </div>
       </aside>
-
+      <!--sidebar end-->
+      
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
 		  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
+					<h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-						<li><i class="fa fa-table"></i>Table</li>
-						<li><i class="fa fa-th-list"></i>Basic Table</li>
+						<li><i class="icon_documents_alt"></i>Pages</li>
+						<li><i class="fa fa-user-md"></i>Upload</li>
 					</ol>
 				</div>
 			</div>
-              <!-- page start-->
-              
-              
-              
               <div class="row">
-                  <div class="col-lg-12">
-                      <section class="panel">
-                          <header class="panel-heading">
-                              Materias
-                          </header>
-                          <div class="table-responsive">
-                            <table class="table">
-                              <tbody>
-                                <tr>
-                                    
-                                 
-                                    <td><a href="">Calculo I</a></td>
-                                  <td><a href="">Fisica II</a></td>
-                                  <td><a href="">Ingenieria de Software</a></td>
-                                  <td><a href="">Inteligencia Artificial</a></td>
-                                  <td><a href="">Modelos Cuantitativos</a></td>
-                                  <td><a href="">Lenguaje de Programacion</a></td>
-                                </tr>
-                                <tr>
-                                  
-                                  <td><a href="">Diseño de Ambientes Web III</a></td>
-                                  <td><a href="">Sistemas Operativos</a></td>
-                                  <td><a href="">Administracion y Seguridad en Redes</a></td>
-                                  <td><a href="">Sistemas Dinamicos y Simulacion</a></td>
-                                  
-                                </tr>
-                                
-                              </tbody>
-                            </table>
+                <!-- profile-widget -->
+                <div class="col-lg-12">
+                    <div class="profile-widget profile-widget-info">
+                          <div class="panel-body">
+                            <div class="col-lg-2 col-sm-2">
+                              <h4>Upload</h4>               
+                             
+                            </div>
+                            
                           </div>
-
-                      </section>
-                  </div>
+                    </div>
+                </div>
               </div>
-              
+              <!-- page start-->
+              <div class="row">
+                 <div class="col-lg-12">
+                    <section class="panel">
+                          <header class="panel-heading tab-bg-info">
+                              <ul class="nav nav-tabs">
+                                   <li class="">
+                                      <a data-toggle="tab" href="#edit-profile">
+                                          <i class="icon-envelope"></i>
+                                          Upload
+                                      </a>
+                                  </li>
+                              </ul>
+                          </header>
+                          <div id="edit-profile" class="tab-pane">
+                                    <section class="panel">                                          
+                                          <div class="panel-body bio-graph-info">
+                                              <h1> Profile Info</h1>
+                                              <form class="form-horizontal" role="form">                                                  
+                                                  <div class="form-group">
+                                                      <label class="col-lg-2 control-label">Nombre Archivo</label>
+                                                      <div class="col-lg-6">
+                                                          <input type="text" class="form-control" id="f-name" placeholder=" ">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label class="col-lg-2 control-label">Tipo de Archivo</label>
+                                                        <div class="col-lg-6">
+                                                            <select name="matieria" id="materia">
+                                                                <option value="CI">Documentos</option> 
+                                                                <option value="FI">Proyectos</option> 
+                                                                <option value="IS">Libros</option>                                                                                                                         
+                                                            </select>
+                                                        </div>  
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label class="col-lg-2 control-label">Materia</label>
+                                                        <div class="col-lg-6">
+                                                            <select name="matieria" id="materia">
+                                                                <option value="CI">Calculo I</option> 
+                                                                <option value="FI">Fisica II</option> 
+                                                                <option value="IS">Ingenieria de Software</option> 
+                                                                <option value="IA">Inteligencia Artificial</option> 
+                                                                <option value="MC">Modelos Cuantitativos</option> 
+                                                                <option value="LP">Lenguaje de Programacion</option> 
+                                                                <option value="WI">Diseño de Ambientes Web III</option> 
+                                                                <option value="SO">Sistemas Operativos</option> 
+                                                                <option value="AR">Administracion y Seguridad en Redes</option> 
+                                                                <option value="SS">Sistemas Dinamicos y Simulacion</option>                                                         
+                                                            </select>
+                                                        </div>  
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label class="col-lg-2 control-label">Descripción</label>
+                                                      <div class="col-lg-10">
+                                                          <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                      </div>
+                                                  </div>
+                                                  
+
+                                                  <div class="form-group">
+                                                      <div class="col-lg-offset-2 col-lg-10">
+                                                          <button type="submit" class="btn btn-primary">Save</button>
+                                                          <button type="button" class="btn btn-danger">Cancel</button>
+                                                      </div>
+                                                  </div>
+                                              </form>
+                                          </div>
+                                      </section>
+                                  </div>
+                                 
+                              </div>
+                          </div>
+                      </section>             
               <!-- page end-->
           </section>
       </section>
       <!--main content end-->
-  </section>
+  
   <!-- container section end -->
     <!-- javascripts -->
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- nicescroll -->
+    <!-- nice scroll -->
     <script src="js/jquery.scrollTo.min.js"></script>
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- jquery knob -->
+    <script src="assets/jquery-knob/js/jquery.knob.js"></script>
     <!--custome script for all page-->
     <script src="js/scripts.js"></script>
+
+  <script>
+
+      //knob
+      $(".knob").knob();
+
+  </script>
 
 
   </body>
