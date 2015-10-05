@@ -83,3 +83,6 @@ Instalar LARAVEL
     Reiniciar el servidor para que coja el mcryp
 
     (ssl no lo usaremos porque no requerimos tener certificados de seguridad)
+    
+    para configurar el apache 
+    nano ssl-conf
