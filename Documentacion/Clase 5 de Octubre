@@ -1,0 +1,85 @@
+Digital Ocean
+
+Precios mas o menos lo mimso pero mas barato, tranfer = bandwidth
+
+Amazon web service ---> Ideal para diferentes despliegues de cloud computing
+
+rackspace ---> Aqui se montó lo institucional (LOL)
+
+Comprar dominios
+
+    -DreamHost
+    -goDaddy
+    -etc...
+
+
+    tipos de conexion de dominio
+
+        -A (una ip directa)
+        -CNAME (otro dominio)
+
+    Herramientas de Dominio(who.is)
+        -permite conocer quien tiene el registro de un dominio
+
+    En terminal de Linux: dig "nombre de la pagina"
+
+
+Conectarse al servidor
+
+Buscar el usuario condigurado en el servidor y la direccion ip
+Ejemplo:
+      ssh root(Arroba)(ip del servidor)
+
+apt install git
+entrar a la carpeta
+git clone (direccion web git del proyecto)
+pwd (conocer la ruta del proyecto) en public
+copiar ruta y diregirse a cd /etc/apache2
+cd sites-availible
+nano 000-default.conf
+    server name "nombre del servidor"
+    en el header <dominio:80>
+    DocumentRoot la ruta del proyecto) en public
+    borrar el resto
+    guardar
+service apache2 reload (forma transicional de reincio de apache, hecho en la ruta de apache2 en etc)
+cd ..
+cd ..
+nano apache2.conf
+    copiar <Directory /var/www/>
+            OPtions...
+
+            </Directory>
+    pegar en sites-enable/000-default.conf
+
+Revisar los logs en caso de ver alguna cosa extraña
+
+cat (muestra la toda la informacion) othervhosgtoawhp
+a2enmod rewrite
+
+Instalar LARAVEL
+    Vamos a digitalOcean
+        leer manual
+            fallocate -l 4G /swapfile (memoria del pc como RAM)
+            otro paso random que jairo se saltó en el manual
+            mkswap /swapfile
+            swapon /swapfile
+            free -m (verificar)
+            nano /etc/fstab
+                  #SWAPFILE
+                  /swapfile none swap sw 0 0
+
+    instalar composer
+        php5enmod -mcrypt
+        composer install
+
+    Configurar el Enviroment
+    crear la key
+    (la base de datos es local por lo tanto se usa localhost)
+
+    (cambiar el usario para que sean del usuario y no del root incluyendo los archivos)
+    chown - R "nombre largo"
+
+    Reiniciar el servidor para que coja el mcryp
+
+    (ssl no lo usaremos porque no requerimos tener certificados de seguridad)

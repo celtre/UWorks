@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\User;
+use Validator;
+use Illuminate\Http\Request;
 class PasswordController extends Controller
 {
     /*
@@ -18,7 +22,7 @@ class PasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    use ResetsPasswords, AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
      * Create a new password controller instance.
