@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
+
 class StorageController extends Controller
 {
     /**
@@ -83,16 +84,7 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-      /*$public_path = storage_path();
-      $url = $public_path.'/app/'.$archivo;
-      //verificamos si el archivo existe y lo retornamos
-      if (Storage::exists($archivo))
-      {
-          Storage::delete($archivo);
-          return route('home');
-      }
-      //si no se encuentra lanzamos un error 404.
-      abort(404);*/
+      //
     }
 
 
@@ -103,19 +95,39 @@ class StorageController extends Controller
      */
     public function save(Request $request)
     {
+      //obtenemos el campo file definido en el formulario
+       $file = $request->file('file');
+       $tiempo = localtime();
+       //obtenemos el nombre del archivo
+       $tConvertido = implode(" ", $tiempo);
+       $nombre = $tConvertido.$file->getClientOriginalName();
+       $tipo = $_POST['tipo'];
+       $materia = $_POST['materia'];
+       $path="$tipo/$materia/";       
+       $url =  $path;
+       //indicamos que queremos guardar un nuevo archivo en el disco local
+       if (!file_exists($url))
+       {
+         mkdir($path,0700,true);
+       \Storage::disk('local')->put($url.$nombre,  \File::get($file));
+     }else{
 
-        //obtenemos el campo file definido en el formulario
-        $file = $request->file('file');
-        $tiempo = localtime();
-        //obtenemos el nombre del archivo
-        $tConvertido = implode(" ", $tiempo);
-        $nombre = $tConvertido.$file->getClientOriginalName();
+      \Storage::disk('local')->put($url.$nombre,  \File::get($file));
+     }
+       return view('home');
 
-        //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
-
-        return view('home');
     }
+
+    /*protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'nombre' => 'required|max:60',
+            'descripcion' => 'required|max:255',
+            'tipo' => 'required',
+            'materia' => 'required',
+            'file' => 'required'
+        ]);
+    }*/
 
 
 

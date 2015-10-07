@@ -1,7 +1,7 @@
 @extends('layout')
-@extends('layout2')
-@section('content')
 
+@section('content')
+    <br><br><br><br>
     <div class="container">
 
         <div class="row">
@@ -9,6 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Agregar archivos</div>
                     <div class="panel-body">
+
                         <form method="POST" action="{{ route('file') }}" accept-charset="UTF-8" enctype="multipart/form-data">
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -16,6 +17,24 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Nuevo Archivo</label>
                                 <div class="col-md-6">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre">
+                                      <label for="descripcion">Descripcion</label>
+                                    <textarea type="text" class="form-control" name="descripcion" cols="40" rows="5"></textarea>
+                                      <label for="tipo">Tipo de documento</label>
+                                      <select name="tipo">
+                                        <option value="" selected="selected">- selecciona -</option>
+                                        <option value="documentos">Documento</option>
+                                        <option value="libros">Libro</option>
+                                        <option value="parcial">Parcial</option>
+                                      </select>
+                                        <label for="materia">Materia</label>
+                                      <select name="materia">
+                                        <option value="" selected="selected">- selecciona -</option>
+                                        <option value="fisicaI">Fisica I</option>
+                                        <option value="calculoI">Calculo I</option>
+                                        <option value="webIII">Diseño de web III</option>
+                                      </select>
                                     <input type="file" class="form-control" name="file" >
                                 </div>
                             </div>
