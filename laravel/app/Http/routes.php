@@ -45,7 +45,7 @@ Route::post('register', 'Auth\AuthController@postRegister');
 // Password reset link request routes...
 Route::get('password', 'Auth\PasswordController@getEmail');
 Route::post('password', 'Auth\PasswordController@postEmail');
-Route::get('changepassword', [
+Route::get('changepassword', ['middleware' => 'auth',
       'uses' => 'changePassword@index',
       'as' => 'changepassword'
   ]);

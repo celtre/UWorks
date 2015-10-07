@@ -1,4 +1,5 @@
 @extends('layout')
+@extends('layout2')
 
 @section('content')
 <body class="login-img3-body">
@@ -25,7 +26,7 @@
             <span class="input-group-addon"><i class="icon_profile"></i></span>
             <input name = "password_confirmation" type="password" class="form-control" placeholder="confirm password" autofocus>
           </div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">send</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Send</button>
 
 
       </div>

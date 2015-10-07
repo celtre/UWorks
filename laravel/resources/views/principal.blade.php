@@ -1,4 +1,5 @@
 @extends('layout')
+@extends('layout2')
 
 @section('content')
 <section id="container" class="">

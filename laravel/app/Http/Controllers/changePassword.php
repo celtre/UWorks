@@ -90,6 +90,7 @@ class changePassword extends Controller
             $user->password = bcrypt($credentials['password']);
             $user->save();
             return redirect('principal');
+
     }
 
     /**
