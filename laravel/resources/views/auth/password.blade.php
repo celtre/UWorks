@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout2')
 
 @section('content')
 <body class="login-img3-body">

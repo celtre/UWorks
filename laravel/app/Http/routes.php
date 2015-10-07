@@ -28,7 +28,7 @@ Route::get('logout', [
   'uses' => 'Auth\AuthController@getLogout',
   'as' => 'logout'
 ]);
-Route::get('principal', [
+Route::get('principal', [ 'middleware' => 'auth',
         'uses' => 'HomeController@principal',
         'as' => 'principal'
     ]
@@ -74,17 +74,30 @@ Route::get('formulario/{archivo}', function ($archivo) {
 });
 
 
-Route::post('eliminar', 'StorageController@save');
+Route::post('eliminar', 'StorageController@destroy');
 Route::get('eliminar/{archivo}', function ($archivo) {
+    $tipo = "documentos";
+    $materia = "webIII";
     $public_path = storage_path();
-    $url = $public_path.'/app/'.$archivo;
+    //$url = "$tipo/$materia/";
+     $url = $public_path.'/app/'.$tipo.'/'.$materia.'/'.$archivo;
     //verificamos si el archivo existe y lo retornamos
-    if (Storage::exists($archivo))
+    if (file_exists($url))
     {
-      Storage::delete($archivo);
-      return view('home');
+        Storage::delete($tipo.'/'.$materia.'/'.$archivo);
+        return 'Se borro con exito';
+    }else{
+      return abort (404);
     }
-    //si no se encuentra lanzamos un error 404.
-    abort(404);
 
+    //si no se encuentra lanzamos un error 404.
+  return 'No se deberia llegar aquí';
+
+});
+
+/*
+    Manejo de perfil
+*/
+Route::get('profile', function(){
+  return view('profile');
 });

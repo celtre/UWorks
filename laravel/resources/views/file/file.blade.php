@@ -3,7 +3,7 @@
 @section('content')
     <br><br><br><br>
     <div class="container">
-
+  	@include('partials/errors')
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">

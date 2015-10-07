@@ -82,9 +82,24 @@ class StorageController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-      //
+      $tipo = "documentos";
+      $materia = "webIII";
+      $public_path = storage_path();
+      //$url = "$tipo/$materia/";
+       $url = $public_path.'/app/'.$tipo.'/'.$materia.'/'.$archivo;
+      //verificamos si el archivo existe y lo retornamos
+      if (file_exists($url))
+      {
+          Storage::delete($tipo.'/'.$materia.'/'.$archivo);
+          return 'Se borro con exito';
+      }else{
+        return abort (404);
+      }
+
+      //si no se encuentra lanzamos un error 404.
+    return 'No se deberia llegar aquí';
     }
 
 
@@ -95,6 +110,13 @@ class StorageController extends Controller
      */
     public function save(Request $request)
     {
+      $this ->validate($request, [
+            'nombre' => 'required|max:60',
+            'descripcion' => 'required|max:255',
+            'tipo' => 'required',
+            'materia' => 'required',
+            'file' => 'required'
+        ]);
       //obtenemos el campo file definido en el formulario
        $file = $request->file('file');
        $tiempo = localtime();
@@ -103,7 +125,7 @@ class StorageController extends Controller
        $nombre = $tConvertido.$file->getClientOriginalName();
        $tipo = $_POST['tipo'];
        $materia = $_POST['materia'];
-       $path="$tipo/$materia/";       
+       $path="$tipo/$materia/";
        $url =  $path;
        //indicamos que queremos guardar un nuevo archivo en el disco local
        if (!file_exists($url))
@@ -118,16 +140,7 @@ class StorageController extends Controller
 
     }
 
-    /*protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'nombre' => 'required|max:60',
-            'descripcion' => 'required|max:255',
-            'tipo' => 'required',
-            'materia' => 'required',
-            'file' => 'required'
-        ]);
-    }*/
+
 
 
 

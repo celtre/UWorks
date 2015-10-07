@@ -223,7 +223,7 @@
                       </ul>
                   </li>
                   <li>
-                      <a class="" href="profile.html">
+                      <a class="" href="profile">
                           <i class="icon_documents_alt"></i>
                           <span>Profile</span>
 
