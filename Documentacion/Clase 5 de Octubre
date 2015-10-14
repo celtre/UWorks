@@ -86,3 +86,10 @@ Instalar LARAVEL
     
     para configurar el apache 
     nano ssl-conf
+    
+    
+    Para ver el historia del servidor 
+    history >> servidor.log
+    
+    El listado de ayudas
+    ls --help
