@@ -59,7 +59,7 @@ Route::get('formulario', [
   'uses' => 'StorageController@index',
   'as'  =>  'file'
   ]);
-Route::post('formulario', 'StorageController@save');
+Route::post('formulario','StorageController@save');
 Route::get('formulario/{archivo}', function ($archivo) {
     $public_path = storage_path();
     $url = $public_path.'/app/'.$archivo;
@@ -101,3 +101,13 @@ Route::get('eliminar/{archivo}', function ($archivo) {
 Route::get('profile', function(){
   return view('profile');
 });
+
+
+
+Route::get('myfiles', [
+        'uses' => 'StorageController@show',
+        'as' => 'myfiles'
+    ]
+
+
+);

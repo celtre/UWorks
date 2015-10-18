@@ -13,10 +13,12 @@ class Files extends Migration
     public function up()
     {
       Schema::create('files', function (Blueprint $table) {
-          $table->string('nombre')->index();
-          $table->string('descripcion')->index();
+          $table->string('nombre');
+          $table->string('descripcion');
           $table->string('tipo');
           $table->string('materia');
+          $table->timestamps();
+          
       });
     }
 
@@ -27,6 +29,6 @@ class Files extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('files');
     }
 }

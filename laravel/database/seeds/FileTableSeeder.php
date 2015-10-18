@@ -18,6 +18,8 @@ class FileTableSeeder extends Seeder
           'descripcion' => $faker->paragraph(),
           'tipo' => "libro",
           'materia' => "fisicaI",
+          'created_at' => $faker->dateTime(),
+          'updated_at' => $faker->dateTime()
 
       ]);
 

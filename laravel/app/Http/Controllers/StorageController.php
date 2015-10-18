@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\File;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Validator;
+use  Illuminate\Http\Request;
 
 
 class StorageController extends Controller
@@ -26,9 +26,18 @@ class StorageController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+      /*
+
+          $file =new File;
+          $file -> nombre = $request->nombre;
+          $file -> descripcion = $request->descripcion;
+          $file -> tipo = $request->tipo;
+          $file -> materia = $request->materia;
+          $file ->save();
+          return view('home');
+*/
     }
 
     /**
@@ -48,9 +57,10 @@ class StorageController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+      $files = File::all();
+      return 	view('file/myfiles', ['files' => $files]);
     }
 
     /**
@@ -110,9 +120,10 @@ class StorageController extends Controller
      */
     public function save(Request $request)
     {
+
       $this ->validate($request, [
             'nombre' => 'required|max:60',
-            'descripcion' => 'required|max:255',
+            'descripcion' => 'required|max:1000',
             'tipo' => 'required',
             'materia' => 'required',
             'file' => 'required'
@@ -136,7 +147,16 @@ class StorageController extends Controller
 
       \Storage::disk('local')->put($url.$nombre,  \File::get($file));
      }
-       return view('home');
+     $files =new File;
+     $files -> nombre = $request->nombre;
+     $files -> descripcion = $request->descripcion;
+     $files -> tipo = $request->tipo;
+     $files -> materia = $request->materia;
+     $files ->save();
+
+
+
+       return view('profile');
 
     }
 
