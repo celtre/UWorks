@@ -28,16 +28,7 @@ class StorageController extends Controller
      */
     public function create(Request $request)
     {
-      /*
 
-          $file =new File;
-          $file -> nombre = $request->nombre;
-          $file -> descripcion = $request->descripcion;
-          $file -> tipo = $request->tipo;
-          $file -> materia = $request->materia;
-          $file ->save();
-          return view('home');
-*/
     }
 
     /**
@@ -94,8 +85,9 @@ class StorageController extends Controller
      */
     public function destroy(Request $request)
     {
-      $tipo = "documentos";
-      $materia = "webIII";
+      $archivo = $request->input('nombre');
+      $materia = $request->input('materia');
+      $tipo = $request->input('tipo');
       $public_path = storage_path();
       //$url = "$tipo/$materia/";
        $url = $public_path.'/app/'.$tipo.'/'.$materia.'/'.$archivo;
@@ -138,6 +130,7 @@ class StorageController extends Controller
        $materia = $_POST['materia'];
        $path="$tipo/$materia/";
        $url =  $path;
+
        //indicamos que queremos guardar un nuevo archivo en el disco local
        if (!file_exists($url))
        {
@@ -147,11 +140,13 @@ class StorageController extends Controller
 
       \Storage::disk('local')->put($url.$nombre,  \File::get($file));
      }
+
      $files =new File;
      $files -> nombre = $request->nombre;
      $files -> descripcion = $request->descripcion;
      $files -> tipo = $request->tipo;
      $files -> materia = $request->materia;
+     $files -> path = $nombre;
      $files ->save();
 
 

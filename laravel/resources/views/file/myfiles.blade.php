@@ -224,7 +224,7 @@
                            <th><i class="icon_calendar"></i> Date</th>
                            <th><i class="icon_profile"></i> User</th>
                            <th><i class="icon_document"></i> Description</th>
-                           <th><i class="icon_cogs"></i> Action</th>
+                           <th colspan="3"><i class="icon_cogs"></i> Action</th>
                         </tr>
                         @forelse ($files as $file)
                         <tr>
@@ -233,10 +233,22 @@
                            <td>{{ $file->descripcion  }}</td>
                            <td>{{ $file->created_at }}</td>
 
-                           <td>
+
+                             <td>
+                              <div class="btn-group">
+                                  <a class="btn btn-primary" href="#">Download</a>
+                              </div>
+                              </td>
+                              <td>
+                               <form method="POST" action="{{ route('delete') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+
+                                 <input type="hidden" name="tipo" value="{{ $file->tipo }}"><br>
+                                 <input type="hidden" name="materia" value="{{ $file->materia }}"><br>
+                                 <input type="hidden" name="nombre" value="{{ $file->path }}"><br>
                             <div class="btn-group">
-                                <a class="btn btn-primary" href="#">Download</a>
+                                <input type="submit"  value="Delete" class="btn btn-primary" >
                             </div>
+                          </form>
                             </td>
                         </tr>
                           @empty

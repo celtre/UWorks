@@ -17,8 +17,9 @@ class Files extends Migration
           $table->string('descripcion');
           $table->string('tipo');
           $table->string('materia');
+          $table->string('path');
           $table->timestamps();
-          
+
       });
     }
 

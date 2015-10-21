@@ -74,26 +74,16 @@ Route::get('formulario/{archivo}', function ($archivo) {
 });
 
 
-Route::post('eliminar', 'StorageController@destroy');
-Route::get('eliminar/{archivo}', function ($archivo) {
-    $tipo = "documentos";
-    $materia = "webIII";
-    $public_path = storage_path();
-    //$url = "$tipo/$materia/";
-     $url = $public_path.'/app/'.$tipo.'/'.$materia.'/'.$archivo;
-    //verificamos si el archivo existe y lo retornamos
-    if (file_exists($url))
-    {
-        Storage::delete($tipo.'/'.$materia.'/'.$archivo);
-        return 'Se borro con exito';
-    }else{
-      return abort (404);
-    }
+/*Route::get('eliminar', [
+    'uses' => 'StorageController@destroy',
+      'as'  =>  'delete'
+  ]);
+  Route::post('eliminar','StorageController@destroy');*/
 
-    //si no se encuentra lanzamos un error 404.
-  return 'No se deberia llegar aquí';
-
-});
+Route::post('eliminar/{_nombre}',[
+    'uses' => 'StorageController@destroy',
+    'as'  =>  'delete'
+    ]);
 
 /*
     Manejo de perfil
