@@ -101,3 +101,5 @@ Route::get('myfiles', [
 
 
 );
+
+Route::get('test', 'testController@index');
