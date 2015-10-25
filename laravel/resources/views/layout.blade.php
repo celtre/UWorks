@@ -193,7 +193,7 @@
                       </a>
                   </li>
 				  <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a href="{{ route('myfiles') }}" class="">
                           <i class="icon_document_alt"></i>
                           <span>Documentos</span>
                           <span class="menu-arrow arrow_carrot-right"></span>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Validator;
 use  Illuminate\Http\Request;
 use DB;
+use Storage;
 
 class StorageController extends Controller
 {
@@ -28,8 +29,23 @@ class StorageController extends Controller
      */
     public function create(Request $request)
     {
-
+        //
     }
+
+
+    public function download($archivo)
+    {
+      $public_path = storage_path();
+      $url = $public_path.'/app/'.$archivo;
+      //verificamos si el archivo existe y lo retornamos
+      if (Storage::exists($archivo))
+      {
+          return response()->download($url);
+      }
+      //si no se encuentra lanzamos un error 404.
+      abort(404);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +66,7 @@ class StorageController extends Controller
      */
     public function show()
     {
-      $files = File::all();
+      $files = File::paginate(5);
       return 	view('file/myfiles', ['files' => $files]);
     }
 
@@ -83,18 +99,15 @@ class StorageController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy(Request $request)
+    public function destroy($archivo)
     {
-      $archivo = $request->input('nombre');
-      $materia = $request->input('materia');
-      $tipo = $request->input('tipo');
       $public_path = storage_path();
       //$url = "$tipo/$materia/";
-       $url = $public_path.'/app/'.$tipo.'/'.$materia.'/'.$archivo;
+       $url = $public_path.'/app/'.$archivo;
       //verificamos si el archivo existe y lo retornamos
       if (file_exists($url))
       {
-          Storage::delete($tipo.'/'.$materia.'/'.$archivo);
+          Storage::delete($archivo);
           return 'Se borro con exito';
       }else{
         return abort (404);

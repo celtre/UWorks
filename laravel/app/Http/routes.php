@@ -60,18 +60,7 @@ Route::get('formulario', [
   'as'  =>  'file'
   ]);
 Route::post('formulario','StorageController@save');
-Route::get('formulario/{archivo}', function ($archivo) {
-    $public_path = storage_path();
-    $url = $public_path.'/app/'.$archivo;
-    //verificamos si el archivo existe y lo retornamos
-    if (Storage::exists($archivo))
-    {
-        return response()->download($url);
-    }
-    //si no se encuentra lanzamos un error 404.
-    abort(404);
-
-});
+Route::get('formulario/{archivo}','StorageController@download');
 
 
 /*Route::get('eliminar', [
@@ -80,10 +69,7 @@ Route::get('formulario/{archivo}', function ($archivo) {
   ]);
   Route::post('eliminar','StorageController@destroy');*/
 
-Route::post('eliminar/{_nombre}',[
-    'uses' => 'StorageController@destroy',
-    'as'  =>  'delete'
-    ]);
+Route::get('eliminar/{nombre}','StorageController@destroy');
 
 /*
     Manejo de perfil

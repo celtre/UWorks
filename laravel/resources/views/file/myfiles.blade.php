@@ -38,27 +38,26 @@
 
                              <td>
                               <div class="btn-group">
-                                  <a class="btn btn-primary" href="#">Download</a>
+                                  <a class="btn btn-primary" href="formulario/{{ $file->nombre_original }}">Download</a>
                               </div>
                               </td>
                               <td>
-                               <form method="POST" action="{{ route('delete') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                               <div class="btn-group">
+                                   <a class="btn btn-primary" href="eliminar/{{ $file->nombre_original }}">Delete</a>
+                               </div>
+                               </td>
 
-                                 <input type="hidden" name="tipo" value="{{ $file->tipo }}"><br>
-                                 <input type="hidden" name="materia" value="{{ $file->materia }}"><br>
-                                 <input type="hidden" name="nombre" value="{{ $file->path }}"><br>
-                            <div class="btn-group">
-                                <input type="submit"  value="Delete" class="btn btn-primary" >
-                            </div>
-                          </form>
-                            </td>
                         </tr>
                           @empty
                           <p>No hay archivo por ahora...</p>
                         @endforelse
 
                      </tbody>
+
+
+
                   </table>
+                   {!! $files->render() !!}
                 </section>
             </div>
         </div>
