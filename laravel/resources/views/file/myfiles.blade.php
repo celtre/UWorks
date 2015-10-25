@@ -33,7 +33,7 @@
                            <td>{{ $file->nombre }}</td>
                            <td>{{ $file->created_at }}</td>
                            <td>{{ $file->descripcion  }}</td>
-                           <td>{{ $file->created_at }}</td>
+                           <td>{{ $file->path }}</td>
 
 
                              <td>

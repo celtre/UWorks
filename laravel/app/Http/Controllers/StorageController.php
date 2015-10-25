@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use  Illuminate\Http\Request;
-
+use DB;
 
 class StorageController extends Controller
 {
@@ -130,25 +130,61 @@ class StorageController extends Controller
        $materia = $_POST['materia'];
        $path="$tipo/$materia/";
        $url =  $path;
+       $hash = hash_file('md5', $file);
+       $consulta = DB::table('files')->where('hash',$hash)->get();
+       $consulta1 = DB::table('files')->where('hash', $hash)->first();
 
+        $files =new File;
        //indicamos que queremos guardar un nuevo archivo en el disco local
        if (!file_exists($url))
        {
          mkdir($path,0700,true);
-       \Storage::disk('local')->put($url.$nombre,  \File::get($file));
+
+       if($consulta != '[]'){
+
+         $files -> nombre = $request->nombre;
+         $files -> descripcion = $request->descripcion;
+         $files -> tipo = $request->tipo;
+         $files -> materia = $request->materia;
+         $files -> nombre_original = $nombre;
+         $files -> hash = $hash;
+         $files -> path = "";
+         $files ->save();
+       }else{
+         \Storage::disk('local')->put($url.$nombre,  \File::get($file));
+         $files -> nombre = $request->nombre;
+         $files -> descripcion = $request->descripcion;
+         $files -> tipo = $request->tipo;
+         $files -> materia = $request->materia;
+         $files -> nombre_original = $nombre;
+         $files -> hash = $hash;
+         $files -> path = $url.$nombre;
+         $files ->save();
+       }
      }else{
 
-      \Storage::disk('local')->put($url.$nombre,  \File::get($file));
+       if($consulta != '[]'){
+
+         $files -> nombre = $request->nombre;
+         $files -> descripcion = $request->descripcion;
+         $files -> tipo = $request->tipo;
+         $files -> materia = $request->materia;
+         $files -> nombre_original = $nombre;
+         $files -> hash = $hash;
+         $files -> path = "";
+         $files ->save();
+       }else{
+         \Storage::disk('local')->put($url.$nombre,  \File::get($file));
+         $files -> nombre = $request->nombre;
+         $files -> descripcion = $request->descripcion;
+         $files -> tipo = $request->tipo;
+         $files -> materia = $request->materia;
+         $files -> nombre_original = $nombre;
+         $files -> hash = $hash;
+         $files -> path = $url.$nombre;
+         $files ->save();
+       }
      }
-
-     $files =new File;
-     $files -> nombre = $request->nombre;
-     $files -> descripcion = $request->descripcion;
-     $files -> tipo = $request->tipo;
-     $files -> materia = $request->materia;
-     $files -> path = $nombre;
-     $files ->save();
-
 
 
        return view('profile');
