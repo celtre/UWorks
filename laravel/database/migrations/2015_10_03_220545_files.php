@@ -21,7 +21,6 @@ class Files extends Migration
           $table->string('hash');
           $table->string('path');
           $table->timestamps();
-
       });
     }
 

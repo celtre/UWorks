@@ -36,9 +36,14 @@ class StorageController extends Controller
     public function download($archivo)
     {
       $public_path = storage_path();
-      $url = $public_path.'/app/'.$archivo;
+      $url= \DB::table('files')
+      ->select(['files.path'])
+      ->where('nombre_original',$archivo)->first();
+      //$url = "$tipo/$materia/";
+     $url1=$public_path."/app/".$url->path;
+
       //verificamos si el archivo existe y lo retornamos
-      if (Storage::exists($archivo))
+      if (Storage::exists("app/".$url->path))
       {
           return response()->download($url);
       }
@@ -102,10 +107,14 @@ class StorageController extends Controller
     public function destroy($archivo)
     {
       $public_path = storage_path();
+      $url= \DB::table('files')
+      ->select(['files.path'])
+      ->where('nombre_original',$archivo)->first();
       //$url = "$tipo/$materia/";
-       $url = $public_path.'/app/'.$archivo;
+     $url1=$public_path."/app/".$url->path;
+     //return $url1;
       //verificamos si el archivo existe y lo retornamos
-      if (file_exists($url))
+      if (file_exists($url1))
       {
           Storage::delete($archivo);
           return 'Se borro con exito';
@@ -144,26 +153,28 @@ class StorageController extends Controller
        $path="$tipo/$materia/";
        $url =  $path;
        $hash = hash_file('md5', $file);
-       $consulta = DB::table('files')->where('hash',$hash)->get();
-       $consulta1 = DB::table('files')->where('hash', $hash)->first();
+       $consulta = \DB::table('files')
+       ->select(['files.nombre_original','files.path'])
+       ->where('hash',$hash)->first();
 
         $files =new File;
        //indicamos que queremos guardar un nuevo archivo en el disco local
        if (!file_exists($url))
        {
          mkdir($path,0700,true);
-
-       if($consulta != '[]'){
+       }
+       if(!empty($consulta)){
 
          $files -> nombre = $request->nombre;
          $files -> descripcion = $request->descripcion;
          $files -> tipo = $request->tipo;
          $files -> materia = $request->materia;
-         $files -> nombre_original = $nombre;
+         $files -> nombre_original = $consulta->nombre_original;
          $files -> hash = $hash;
-         $files -> path = "";
+         $files -> path = $consulta->path;
          $files ->save();
        }else{
+
          \Storage::disk('local')->put($url.$nombre,  \File::get($file));
          $files -> nombre = $request->nombre;
          $files -> descripcion = $request->descripcion;
@@ -174,30 +185,8 @@ class StorageController extends Controller
          $files -> path = $url.$nombre;
          $files ->save();
        }
-     }else{
 
-       if($consulta != '[]'){
 
-         $files -> nombre = $request->nombre;
-         $files -> descripcion = $request->descripcion;
-         $files -> tipo = $request->tipo;
-         $files -> materia = $request->materia;
-         $files -> nombre_original = $nombre;
-         $files -> hash = $hash;
-         $files -> path = "";
-         $files ->save();
-       }else{
-         \Storage::disk('local')->put($url.$nombre,  \File::get($file));
-         $files -> nombre = $request->nombre;
-         $files -> descripcion = $request->descripcion;
-         $files -> tipo = $request->tipo;
-         $files -> materia = $request->materia;
-         $files -> nombre_original = $nombre;
-         $files -> hash = $hash;
-         $files -> path = $url.$nombre;
-         $files ->save();
-       }
-     }
 
 
        return view('profile');
