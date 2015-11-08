@@ -17,4 +17,9 @@ class File extends Model
    */
   protected $fillable = ['nombre', 'descripcion', 'tipo', 'materia','nombre_original','hash','path'];
 
+
+  public function user_files()
+  {
+    $this->hasOne('App/Users');
+  }
 }

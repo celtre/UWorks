@@ -43,9 +43,9 @@ class StorageController extends Controller
      $url1=$public_path."/app/".$url->path;
 
       //verificamos si el archivo existe y lo retornamos
-      if (Storage::exists("app/".$url->path))
+      if (Storage::exists($url->path))
       {
-          return response()->download($url);
+          return response()->download($url1);
       }
       //si no se encuentra lanzamos un error 404.
       abort(404);
@@ -110,14 +110,21 @@ class StorageController extends Controller
       $url= \DB::table('files')
       ->select(['files.path'])
       ->where('nombre_original',$archivo)->first();
-      //$url = "$tipo/$materia/";
+      return $consulta =\DB::table('files')
+      ->where('nombre_original',$archivo)->count();
      $url1=$public_path."/app/".$url->path;
      //return $url1;
       //verificamos si el archivo existe y lo retornamos
-      if (file_exists($url1))
+      if ((file_exists($url1)) and ($consulta <=1))
       {
-          Storage::delete($archivo);
+        \DB::table('files')
+        ->where('nombre_original',$archivo)->delete();
+          Storage::delete($url->path);
           return 'Se borro con exito';
+      }else if ($consulta >=1) {
+         \DB::table('files')
+        ->where('nombre_original',$archivo)->delete();
+        return 'borro el registro solamente';
       }else{
         return abort (404);
       }
@@ -169,10 +176,11 @@ class StorageController extends Controller
          $files -> descripcion = $request->descripcion;
          $files -> tipo = $request->tipo;
          $files -> materia = $request->materia;
-         $files -> nombre_original = $consulta->nombre_original;
+         $files -> nombre_original = $nombre;
          $files -> hash = $hash;
          $files -> path = $consulta->path;
          $files ->save();
+
        }else{
 
          \Storage::disk('local')->put($url.$nombre,  \File::get($file));
@@ -193,7 +201,10 @@ class StorageController extends Controller
 
     }
 
-
+    public function user_file()
+    {
+        //
+    }
 
 
 

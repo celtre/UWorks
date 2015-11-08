@@ -28,7 +28,8 @@
                            <th><i class="icon_document"></i> Description</th>
                            <th colspan="3"><i class="icon_cogs"></i> Action</th>
                         </tr>
-                        @forelse ($files as $file)
+                        @forelse ($files as $file) and ($userr as $user1)
+
                         <tr>
                            <td>{{ $file->nombre }}</td>
                            <td>{{ $file->created_at }}</td>
