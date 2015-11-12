@@ -11,8 +11,7 @@
     <title>Proyecto P</title>
 
     <!-- Bootstrap CSS -->
-    <link href="assets/css/F
-		bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
@@ -34,7 +33,7 @@
 
   </head>
 
-  <body>
+  <body class="login-img3-body">
   <!-- container section start -->
   <section id="container" class="">
 
