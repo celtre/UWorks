@@ -17,9 +17,22 @@ body {
     margin: 0px !important;
     font-size:14px !important;    
 }
-h1,h2,h3,h4,h5{
+
+.span.a{
+    color: #ffffff
+}
+
+h1,h2,h3,h4{
     font-weight: 300;
 }
+
+h5{
+    font-weight: 300;
+    text-align: center;
+    font: oblique 250% sans-serif bold; 
+    color: #1cb2b7;
+}
+
 label{
     font-weight: 300;   
 }
@@ -73,21 +86,21 @@ table tr th { color: #688a7e;}
     background-color: #f1f2f7;
 }
 .login-img-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  background: url('../img/Biblioteca Trinity College.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 .login-img2-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  background: url('../img/Biblioteca Trinity College.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 .login-img3-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  background: url('../img/Biblioteca Trinity College.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -113,9 +126,37 @@ table tr th { color: #688a7e;}
     border: 1px solid #B0B6BE;
     background: rgba(213,215,222,0.9);
 }
-.login-form a{
-    color: #688a7e !important;
+.login-form .a .btn-primary{
+    color: #FFF;
+    background-color: #007AFF;
+    border-color: #007AFF;
+       
 }
+
+.login-form .a .btn{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    line-height: 1.42857;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    white-space: nowrap;
+    -moz-user-select: none;
+    font-weight: 300;
+    transition: all 0.15s ease 0s;
+}
+
+/*.login-form .a:visited{
+    color: #ffffff;
+}
+.login-form .a:hover:visited{
+    color: #007AFF;
+}*/
+
 .login-form h2.login-form-heading {
     margin: 0;
     padding:20px 15px;
@@ -196,13 +237,14 @@ table tr th { color: #688a7e;}
 .login-img3-body .login-form p,.login-img2-body .login-form p {
     color: #34aadc;
 }
+/*
 .login-form a {
     color: #b6b6b6;
 }
 
 .login-form a:hover {
     color: #34aadc;
-}
+}*/
 .form .required{
     font-size: 16px;
     color: #00a0df;
@@ -1198,7 +1240,7 @@ div[data-role="editor-toolbar"] {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1);
   
 }
-}
+
 .panel.panel-default.panel-heading {
   background: #97d3c5;   
 }
@@ -1505,7 +1547,7 @@ div[data-role="editor-toolbar"] {
   -moz-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
 }
-* /Widget-Content */
+/*Widget-Content */
 
 .widget-content .error .form-inline button{
 	margin-left:-2px;
@@ -1683,7 +1725,7 @@ div[data-role="editor-toolbar"] {
   cursor:move;
 }
 /*-----	map-----*/
-* Google maps */
+/* Google maps */
 
 .gmap iframe{
 	width: 100%;
