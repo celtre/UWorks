@@ -19,8 +19,10 @@
   </div>
 
         <div class="row">
-
-            <h5>Este es un espacio donde usted podra compartir conocimientos y experiencias de la universidad</h5>
+            <h4>Bienvenidos a UWorks</h4>
+            <h5>Este es un espacio integral y confiable para la vida universitaria que esta pensado para representar
+                  la expericiencia educativa, independientemente de su programa academico. Este es espacio le permite
+                  compartir sus conocimientos y experciencias en la universidad.</h5>
 
 
 
