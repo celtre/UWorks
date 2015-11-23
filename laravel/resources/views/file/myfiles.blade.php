@@ -28,7 +28,7 @@
                            <th><i class="icon_document"></i> Description</th>
                            <th colspan="3"><i class="icon_cogs"></i> Action</th>
                         </tr>
-                        @forelse ($files as $file) and ($userr as $user1)
+                        @forelse ($files as $file) 
 
                         <tr>
                            <td>{{ $file->nombre }}</td>

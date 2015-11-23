@@ -56,36 +56,49 @@ Route::get('reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('reset', 'Auth\PasswordController@postReset');
 
 Route::get('formulario', [
+  'middleware' => 'auth',
   'uses' => 'StorageController@index',
   'as'  =>  'file'
   ]);
 Route::post('formulario','StorageController@save');
-Route::get('formulario/{archivo}','StorageController@download');
+Route::get('formulario/{archivo}',[
+  'middleware' => 'auth',
+  'uses'=> 'StorageController@download']);
 
 
-/*Route::get('eliminar', [
-    'uses' => 'StorageController@destroy',
-      'as'  =>  'delete'
-  ]);
-  Route::post('eliminar','StorageController@destroy');*/
 
-Route::get('eliminar/{nombre}','StorageController@destroy');
+
+Route::get('myfiles/eliminar/{nombre}',
+[
+  'middleware' => 'auth',
+  'uses'=>'StorageController@destroy']);
 
 /*
     Manejo de perfil
 */
-Route::get('profile', function(){
-  return view('profile');
-});
-
+Route::get('profile',[
+  'uses' => 'ProfileController@index',
+  'as' => 'profile'
+  ]);
+  Route::get('edit',[
+    'middleware' => 'auth',
+    'uses' => 'ProfileController@indexEdit',
+    'as' => 'edit'
+    ]);
+  Route::post('profile','ProfileController@save');
 
 
 Route::get('myfiles', [
+        'middleware' => 'auth',
         'uses' => 'StorageController@show',
         'as' => 'myfiles'
-    ]
+    ]);
 
-
-);
+    Route::get('subject',[
+      'middleware' => 'auth',
+      'uses' => 'SubjectController@index',
+      'as' => 'subject'
+      ]);
+      Route::post('subject','SubjectController@create');
 
 Route::get('test', 'testController@index');

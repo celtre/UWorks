@@ -28,7 +28,7 @@
                           <div class="col-lg-2 col-sm-2">
                             <h4>Jenifer Smith</h4>
                             <div class="follow-ava">
-                                <img src="img/avatar1_small.png" alt="">
+                                <img alt="" src="img/avatar1_small.png">
                             </div>
                             <h6>Administrator</h6>
                           </div>
@@ -155,62 +155,59 @@
                                   <section class="panel">
                                         <div class="panel-body bio-graph-info">
                                             <h1> Profile Info</h1>
-                                            <form class="form-horizontal" role="form">
+                                            <form method="POST" action="{{ route('profile') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+
+                                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">First Name</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="f-name" placeholder=" ">
+                                                        <input name="nombre" type="text" class="form-control" id="f-name" placeholder=" ">
                                                     </div>
-                                                </div>
+                                                </div><br><br>
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Last Name</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="l-name" placeholder=" ">
+                                                        <input name="apellido" type="text" class="form-control" id="l-name" placeholder=" ">
                                                     </div>
-                                                </div>
+                                                </div><br><br>
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">About Me</label>
                                                     <div class="col-lg-10">
-                                                        <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                        <textarea name="descripcion" id="" class="form-control" cols="30" rows="5"></textarea>
                                                     </div>
-                                                </div>
+                                                </div><br><br><br>
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Country</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="c-name" placeholder=" ">
+                                                        <input name="pais" type="text" class="form-control" id="c-name" placeholder=" ">
                                                     </div>
-                                                </div>
+                                                </div><br><br><br><br>
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Birthday</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="b-day" placeholder=" ">
+                                                        <input name="fechaNac" type="date" class="form-control" id="b-day">
                                                     </div>
-                                                </div>
+                                                </div><br><br><br>
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Occupation</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="occupation" placeholder=" ">
+                                                        <input name="ocupacion" type="text" class="form-control" id="occupation" placeholder=" ">
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 control-label">Email</label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="email" placeholder=" ">
-                                                    </div>
-                                                </div>
+                                                </div><br><br><br>
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Mobile</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="mobile" placeholder=" ">
+                                                        <input name="celular" type="text" class="form-control"  placeholder=" ">
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 control-label">Website URL</label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="url" placeholder="http://www.demowebsite.com ">
-                                                    </div>
-                                                </div>
-
+                                                </div><br><br>
+                                                <input type="file" class="form-control" name="foto" >
                                                 <div class="form-group">
                                                     <div class="col-lg-offset-2 col-lg-10">
                                                         <button type="submit" class="btn btn-primary">Save</button>

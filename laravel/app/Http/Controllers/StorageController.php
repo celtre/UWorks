@@ -110,27 +110,28 @@ class StorageController extends Controller
       $url= \DB::table('files')
       ->select(['files.path'])
       ->where('nombre_original',$archivo)->first();
-      return $consulta =\DB::table('files')
-      ->where('nombre_original',$archivo)->count();
+
+      $consulta =\DB::table('files')
+      ->where('path',$url->path)->count();
      $url1=$public_path."/app/".$url->path;
-     //return $url1;
+
       //verificamos si el archivo existe y lo retornamos
-      if ((file_exists($url1)) and ($consulta <=1))
+      if ((Storage::exists($url->path)) and ($consulta <=1))
       {
         \DB::table('files')
         ->where('nombre_original',$archivo)->delete();
           Storage::delete($url->path);
-          return 'Se borro con exito';
+          return view('profile');
       }else if ($consulta >=1) {
          \DB::table('files')
         ->where('nombre_original',$archivo)->delete();
-        return 'borro el registro solamente';
+        return view('profile');
       }else{
         return abort (404);
       }
 
       //si no se encuentra lanzamos un error 404.
-    return 'No se deberia llegar aquí';
+    //return 'No se deberia llegar aquí';
     }
 
 
@@ -152,7 +153,6 @@ class StorageController extends Controller
       //obtenemos el campo file definido en el formulario
        $file = $request->file('file');
        $tiempo = localtime();
-       //obtenemos el nombre del archivo
        $tConvertido = implode(" ", $tiempo);
        $nombre = $tConvertido.$file->getClientOriginalName();
        $tipo = $_POST['tipo'];
@@ -164,7 +164,7 @@ class StorageController extends Controller
        ->select(['files.nombre_original','files.path'])
        ->where('hash',$hash)->first();
 
-        $files =new File;
+        $files = new File;
        //indicamos que queremos guardar un nuevo archivo en el disco local
        if (!file_exists($url))
        {

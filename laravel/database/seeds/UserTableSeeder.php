@@ -16,6 +16,7 @@ class UserTableSeeder extends Seeder
       DB::table('users')->insert([
           'name' => str_random(10).'_1',
           'email' => str_random(10).'@gmail.com',
+          //'role' => 'admin',
           'password' => bcrypt('secret'),
           'created_at' => $faker->dateTime(),
           'updated_at' => $faker->dateTime()

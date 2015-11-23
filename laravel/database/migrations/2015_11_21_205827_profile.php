@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Files extends Migration
+class Profile extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,17 @@ class Files extends Migration
      */
     public function up()
     {
-      Schema::create('files', function (Blueprint $table) {
+      Schema::create('profile', function (Blueprint $table) {
           $table->increments('id');
           $table->string('nombre');
+          $table->string('apellido');
+          $table->string('email')->unique();
+          $table->time('fecha_nacimiento');
           $table->string('descripcion');
-          $table->string('tipo');
-          $table->string('materia');
-          $table->string('nombre_original');
-          $table->string('hash');
-          $table->string('path');
+          $table->string('pais');
+          $table->string('celular');
+          $table->string('ocupacion');
+          $table->string('foto');
           $table->timestamps();
       });
     }
@@ -32,6 +34,6 @@ class Files extends Migration
      */
     public function down()
     {
-        Schema::drop('files');
+        Schema::drop('profile');
     }
 }
