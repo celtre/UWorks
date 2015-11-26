@@ -19,7 +19,7 @@
   </div>
 
         <div class="row">
-            <h4>Bienvenidos a UWorks</h4>
+            <h6>Bienvenidos a UWorks</h6>
             <h5>Este es un espacio integral y confiable para la vida universitaria, que esta pensado para representar
                   la expericiencia educativa, independientemente de su programa academico. UWorks tiene como objetivo
                   propiciar un espacio de conocimiento y colaboración para los estudiantes de la universidad, donde es
