@@ -49,9 +49,10 @@
                                </div>
                                </td>
                                @endif
+
                         </tr>
                           @empty
-                          <p>No hay archivos por ahora...</p>
+                          <p>No hay libros por ahora...</p>
 
                         @endforelse
 
@@ -60,7 +61,7 @@
 
 
                   </table>
-                   {!! $files->render() !!}
+
                 </section>
             </div>
         </div>

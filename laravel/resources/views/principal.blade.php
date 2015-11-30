@@ -123,7 +123,7 @@
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="info-box brown-bg">
                                             <i class="fa fa-cloud-upload"></i>
-        <div class="count">3</div>
+        <div class="count">{{ $files }}</div>
         <div class="title">Uploads</div>
       </div><!--/.info-box-->
     </div><!--/.col-->

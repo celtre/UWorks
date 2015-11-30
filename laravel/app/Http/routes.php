@@ -80,11 +80,7 @@ Route::get('profile',[
   'uses' => 'ProfileController@index',
   'as' => 'profile'
   ]);
-  Route::get('edit',[
-    'middleware' => 'auth',
-    'uses' => 'ProfileController@indexEdit',
-    'as' => 'edit'
-    ]);
+
   Route::post('profile','ProfileController@save');
 
 
@@ -94,6 +90,20 @@ Route::get('myfiles', [
         'as' => 'myfiles'
     ]);
 
+
+Route::get('parciales', [
+          'middleware' => 'auth',
+          'uses' => 'StorageController@showparciales',
+          'as' => 'parciales'
+      ]);
+
+
+Route::get('mylibros', [
+          'middleware' => 'auth',
+          'uses' => 'StorageController@showlibros',
+          'as' => 'mylibros'
+      ]);
+
     Route::get('subject',[
       'middleware' => 'auth',
       'uses' => 'SubjectController@index',
@@ -101,4 +111,4 @@ Route::get('myfiles', [
       ]);
       Route::post('subject','SubjectController@create');
 
-Route::get('test', 'testController@index');
+      Route::get('test', 'testController@index');

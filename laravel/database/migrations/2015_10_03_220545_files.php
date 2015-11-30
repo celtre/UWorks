@@ -21,6 +21,9 @@ class Files extends Migration
           $table->string('nombre_original');
           $table->string('hash');
           $table->string('path');
+          $table->string('email');
+          $table->string('name');
+          //$table->integer('descargas');
           $table->timestamps();
       });
     }

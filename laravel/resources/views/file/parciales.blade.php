@@ -51,7 +51,7 @@
                                @endif
                         </tr>
                           @empty
-                          <p>No hay archivos por ahora...</p>
+                          <p>No hay parciales por ahora...</p>
 
                         @endforelse
 
@@ -60,7 +60,7 @@
 
 
                   </table>
-                   {!! $files->render() !!}
+
                 </section>
             </div>
         </div>

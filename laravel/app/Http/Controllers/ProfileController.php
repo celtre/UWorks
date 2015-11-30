@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\File;
+use App\Subject;
 use Validator;
 use DB;
 use Storage;
@@ -19,12 +21,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-     return view('profile');
+      $user = \Auth::user();
+      $profiles = \DB::table('profiles')
+      ->select('*')
+      ->where('email',$user->email)->first();
+      $subject = Subject::all();
+     return view('profile', ['profiles'=>$profiles,'subject'=>$subject]);
     }
-    public function indexEdit()
-    {
-     return view('profile/edit');
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,33 +38,60 @@ class ProfileController extends Controller
     {
 
       $this -> validate($request, [
-            'nombre' => 'required|max:60',
-            'apellido' => 'required|max:60',
-            'descripcion' => 'required|max:1000',
-            'pais' => 'required|max:60',
-            'fechaNac' => 'required',
-            'ocupacion' => 'required|max:60',
-            'celular' => 'required|max:20',
+            'apellido' => 'max:60',
+            'descripcion' => 'max:1000',
+            'pais' => 'max:60',
+            'ocupacion' => 'max:60',
+            'celular' => 'max:20',
             'foto' => 'mimes:jpeg,bmp,png'
         ]);
-         $foto = $request->file('foto');
-         $tiempo = localtime();
-         //obtenemos el nombre del archivo
-         $tConvertido = implode(" ", $tiempo);
-         $nombre = $tConvertido.$foto->getClientOriginalName();
-         $path = '/app/fotos/'.$nombre;
-         \Storage::disk('local')->put($nombre,  \File::get($foto));
+        $user = \Auth::user();
+        $consulta = \DB::table('profiles')
+        ->select(['profiles.email','profiles.foto'])
+        ->where('email',$user->email)->first();
+        $foto = $request->file('foto');
+
+        if(empty($request)){
+
+
+        $public_path = storage_path();
+        $nombre = $user->email.$foto->getClientOriginalName();
+        $path = '/app/fotos/'.$nombre;
+        $url = $public_path.$path;
+      }else{
+        $url =$consulta->foto;
+        $nombre = "";
+      }
+
+
+         if(empty($consulta)){
+
+
+
+         \Storage::disk('local')->put('/foto/'.$nombre,  \File::get($foto));
          $profile = new Profile;
-         $profile -> nombre = $request->nombre;
+         $profile -> nombre = $user->name;
          $profile -> apellido = $request->apellido;
+         $profile -> email = $user->email;
          $profile -> descripcion = $request->descripcion;
          $profile -> pais = $request->pais;
          $profile -> fecha_nacimiento = $request->fechaNac;
          $profile -> ocupacion = $request->ocupacion;
          $profile -> celular = $request->celular;
-         $profile -> foto = $nombre;
+         $profile -> foto = $url;
          $profile ->save();
-         return view('principal');
+         return 'gracias por completar su perfil';
+       }else{
+         DB::table('profiles')
+         ->select(['profiles'])
+         ->where('email',$user->name)
+         ->update(['apellido' => $request->apellido, 'descripcion' => $request->descripcion,
+            'fecha_nacimiento' => $request->fechaNac, 'ocupacion' => $request->ocupacion,
+            'celular' => $request->celular, 'foto'=>$url
+         ]);
+         //\Storage::disk('local')->put('/foto/'.$nombre,  \File::get($foto));
+         return 'Usuario exitoso';
+       }
     }
 
     /**

@@ -16,6 +16,8 @@ class Subjects extends Migration
           $table->increments('id');
           $table->string('nombre')->unique();
           $table->string('descripcion');
+          $table->integer('archivos');
+          $table->integer('descargas');
           $table->timestamps();
       });
     }

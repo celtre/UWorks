@@ -20,130 +20,151 @@
         </ol>
       </div>
     </div>
+
             <div class="row">
               <!-- profile-widget -->
               <div class="col-lg-12">
                   <div class="profile-widget profile-widget-info">
                         <div class="panel-body">
                           <div class="col-lg-2 col-sm-2">
-                            <h4>Jenifer Smith</h4>
+                            @if (!empty($profiles))
+                            <h4>{{ $profiles->nombre }}</h4>
                             <div class="follow-ava">
-                                <img alt="" src="img/avatar1_small.png">
+                                <img alt="" src="{{ $profiles->foto }}">
                             </div>
-                            <h6>Administrator</h6>
+                            <h6>{{ $profiles->apellido }}</h6>
                           </div>
                           <div class="col-lg-4 col-sm-4 follow-info">
-                              <p>Soy Javier Galindo, estudiante de ingenieria de sistemas.</p>
-                              <p>@javiergalindo</p>
-              <p><i class="fa fa-twitter">javiertweet</i></p>
+                              <p>{{ $profiles->descripcion }}</p>
+
                               <h6>
                                   <span><i class="icon_clock_alt"></i>11:05 AM</span>
                                   <span><i class="icon_calendar"></i>25.10.13</span>
-                                  <span><i class="icon_pin_alt"></i>COL</span>
+                                  <span><i class="icon_pin_alt"></i>{{ $profiles->pais }}</span>
+                                  @else
+                                  <p>Por favor señor(a) {{ Auth::user()->name }} complete su perfil.</p>
+                                  @endif
                               </h6>
                           </div>
 
                         </div>
                   </div>
               </div>
+
             </div>
+
             <!-- page start-->
             <div class="row">
                <div class="col-lg-12">
                   <section class="panel">
                         <header class="panel-heading tab-bg-info">
                             <ul class="nav nav-tabs">
+                                @if(Auth::user()->name == $profiles->nombre)
                                 <li class="active">
                                     <a data-toggle="tab" href="#recent-activity">
                                         <i class="icon-home"></i>
-                                        Activity
+                                        Upload
                                     </a>
                                 </li>
+                                 @endif
                                 <li>
                                     <a data-toggle="tab" href="#profile">
                                         <i class="icon-user"></i>
                                         Profile
                                     </a>
                                 </li>
+                                  @if(Auth::user()->name == $profiles->nombre)
                                 <li class="">
                                     <a data-toggle="tab" href="#edit-profile">
                                         <i class="icon-envelope"></i>
                                         Edit Profile
                                     </a>
                                 </li>
+                                 @endif
                             </ul>
                         </header>
                         <div class="panel-body">
                             <div class="tab-content">
+                              @if(Auth::user()->name == $profiles->nombre)
                                 <div id="recent-activity" class="tab-pane active">
-                                    <div class="profile-activity">
-                                        <div class="act-time">
-                                            <div class="activity-body act-in">
-                                                <span class="arrow"></span>
-                                                <div class="text">
-                                                    <a href="#" class="activity-img"><img class="avatar" src="img/avatar1_small.png" alt=""></a>
-                                                    <p class="attribution"> at 4:25pm, 30th Octmber 2014</p>
-                                                    <p>Upload projectweb</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="act-time">
-                                            <div class="activity-body act-in">
-                                                <span class="arrow"></span>
-                                                <div class="text">
-                                                    <a href="#" class="activity-img"><img class="avatar" src="img/avatar1_small.png" alt=""></a>
-                                                    <p class="attribution">at 5:25am, 30th Octmber 2014</p>
-                                                    <p>Download Kanban Vs Scrum</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="act-time">
-                                            <div class="activity-body act-in">
-                                                <span class="arrow"></span>
-                                                <div class="text">
-                                                    <a href="#" class="activity-img"><img class="avatar" src="img/avatar1_small.png" alt=""></a>
-                                                    <p class="attribution">at 5:25am, 30th Octmber 2014</p>
-                                                    <p>Download Curso-de-Desarrollo-agil</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  <form method="POST" action="{{ route('file') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                      <div class="form-group">
+                                          <label class="col-md-4 control-label">Nuevo Archivo</label>
+                                          <div class="col-md-6">
+                                              <label for="nombre">Nombre</label>
+                                              <input type="text" class="form-control" name="nombre">
+                                                <label for="descripcion">Descripcion</label>
+                                              <textarea type="text" class="form-control" name="descripcion" cols="40" rows="5"></textarea>
+                                                <label for="tipo">Tipo de documento</label>
+                                                <select name="tipo">
+                                                  <option value="" selected="selected">- selecciona -</option>
+                                                  <option value="documentos">Documento</option>
+                                                  <option value="libros">Libro</option>
+                                                  <option value="parcial">Parcial</option>
+                                                </select>
+                                                  <label for="materia">Materia</label>
+                                                <select name="materia">
+                                                  <option value="" selected="selected">- selecciona -</option>
+                                                    @forelse ($subject as $subjects)
+                                                  <option value="{{ $subjects->nombre }}">{{ $subjects->nombre }}</option>
+                                                  @empty
+                                                  <p>No hay materias por ahora...</p>
+                                                @endforelse
+                                                </select>
+
+                                              <input type="file" class="form-control" name="file" >
+
+                                          </div>
+
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-lg-offset-2 col-lg-10">
+                                              <button type="submit" class="btn btn-primary">Save</button>
+                                              <button type="button" class="btn btn-danger">Cancel</button>
+                                          </div>
+                                      </div>
+                                  </form>
+
                                 </div>
+                                @endif
                                 <!-- profile -->
                                 <div id="profile" class="tab-pane">
                                   <section class="panel">
+                                      @if (!empty($profiles))
                                     <div class="bio-graph-heading">
-                                             Soy Javier Galindo, estudiante de ingenieria de sistemas en la universidad Tecnologica de Bolivar
+                                             {{ $profiles->descripcion }}
                                     </div>
                                     <div class="panel-body bio-graph-info">
                                         <h1>Bio Graph</h1>
                                         <div class="row">
                                             <div class="bio-row">
-                                                <p><span>First Name </span>: Javier </p>
+                                                <p><span>First Name </span>: {{ $profiles->nombre }} </p>
                                             </div>
                                             <div class="bio-row">
-                                                <p><span>Last Name </span>: Galindo</p>
+                                                <p><span>Last Name </span>: {{ $profiles->apellido }}</p>
                                             </div>
                                             <div class="bio-row">
-                                                <p><span>Birthday</span>: 10 Mayo 1988</p>
+                                                <p><span>Birthday</span>: {{ $profiles->fecha_nacimiento }}</p>
                                             </div>
                                             <div class="bio-row">
-                                                <p><span>Country </span>: Colombia</p>
+                                                <p><span>Country </span>: {{ $profiles->pais}}</p>
                                             </div>
                                             <div class="bio-row">
-                                                <p><span>Occupation </span>: Estudiante</p>
+                                                <p><span>Occupation </span>: {{ $profiles->ocupacion }}</p>
                                             </div>
                                             <div class="bio-row">
-                                                <p><span>Email </span>: javier@mailname.com</p>
+                                                <p><span>Email </span>: {{ $profiles->email }}</p>
                                             </div>
                                             <div class="bio-row">
-                                                <p><span>Mobile </span>: (+6283) 456 789</p>
+                                                <p><span>Mobile </span>: {{ $profiles->celular }}</p>
                                             </div>
-                                            <div class="bio-row">
-                                                <p><span>Phone </span>:  (+021) 956 789123</p>
-                                            </div>
+
                                         </div>
                                     </div>
+                                    @endif
                                   </section>
                                     <section>
                                         <div class="row">
@@ -151,6 +172,7 @@
                                     </section>
                                 </div>
                                 <!-- edit-profile -->
+                                @if(Auth::user()->name == $profiles->nombre)
                                 <div id="edit-profile" class="tab-pane">
                                   <section class="panel">
                                         <div class="panel-body bio-graph-info">
@@ -159,12 +181,7 @@
 
                                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 control-label">First Name</label>
-                                                    <div class="col-lg-6">
-                                                        <input name="nombre" type="text" class="form-control" id="f-name" placeholder=" ">
-                                                    </div>
-                                                </div><br><br>
+
 
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Last Name</label>
@@ -218,6 +235,7 @@
                                         </div>
                                     </section>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </section>

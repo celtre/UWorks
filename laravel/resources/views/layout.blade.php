@@ -110,7 +110,7 @@
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a href="{{ route('parciales') }}" class="">
                           <i class="icon_desktop"></i>
                           <span>Parciales</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -120,7 +120,7 @@
                       </ul>
                   </li>
                   <li class="sub-menu">
-                       <a href="javascript:;" class="">
+                       <a href="{{ route('mylibros') }}" class="">
                           <i class="icon_genius"></i>
                           <span>Libros</span>
                           <span class="menu-arrow arrow_carrot-right"></span>

@@ -28,14 +28,14 @@ class SubjectController extends Controller
     public function create(Request $request)
     {
       $this ->validate($request, [
-            'nombre' => 'required|max:60',
+            'nombre' => 'required|max:60|unique:subjects',
             'descripcion' => 'required|max:1000',
         ]);
         $subject = new Subject;
         $subject -> nombre = $request->nombre;
         $subject -> descripcion = $request->descripcion;
         $subject ->save();
-        return 'creado';
+        return 	view('subject/subject');
     }
 
     /**

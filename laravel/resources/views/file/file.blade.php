@@ -31,10 +31,13 @@
                                         <label for="materia">Materia</label>
                                       <select name="materia">
                                         <option value="" selected="selected">- selecciona -</option>
-                                        <option value="fisicaI">Fisica I</option>
-                                        <option value="calculoI">Calculo I</option>
-                                        <option value="webIII">Diseño de web III</option>
+                                          @forelse ($subject as $subjects)
+                                        <option value="{{ $subjects->nombre }}">{{ $subjects->nombre }}</option>
+                                        @empty
+                                        <p>No hay materias por ahora...</p>
+                                      @endforelse
                                       </select>
+
                                     <input type="file" class="form-control" name="file" >
                                 </div>
                             </div>
