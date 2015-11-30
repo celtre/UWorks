@@ -65,11 +65,8 @@ class ProfileController extends Controller
 
 
          if(empty($consulta)){
-
-
-
          \Storage::disk('local')->put('/foto/'.$nombre,  \File::get($foto));
-         $profile = new Profile;
+         /*$profile = new Profile;
          $profile -> nombre = $user->name;
          $profile -> apellido = $request->apellido;
          $profile -> email = $user->email;
@@ -79,18 +76,25 @@ class ProfileController extends Controller
          $profile -> ocupacion = $request->ocupacion;
          $profile -> celular = $request->celular;
          $profile -> foto = $url;
-         $profile ->save();
-         return 'gracias por completar su perfil';
+         $profile ->save();*/
+         DB::table('profiles')
+         ->select('*')
+         ->where('email',$user->email)
+         ->update(['apellido' => $request->apellido, 'descripcion' => $request->descripcion,
+            'fecha_nacimiento' => $request->fechaNac, 'ocupacion' => $request->ocupacion,
+            'celular' => $request->celular, 'foto'=>$url
+         ]);
+         return 'jpp';
        }else{
          DB::table('profiles')
-         ->select(['profiles'])
-         ->where('email',$user->name)
+         ->select('*')
+         ->where('email',$user->email)
          ->update(['apellido' => $request->apellido, 'descripcion' => $request->descripcion,
             'fecha_nacimiento' => $request->fechaNac, 'ocupacion' => $request->ocupacion,
             'celular' => $request->celular, 'foto'=>$url
          ]);
          //\Storage::disk('local')->put('/foto/'.$nombre,  \File::get($foto));
-         return 'Usuario exitoso';
+         return redirect('profile');
        }
     }
 
